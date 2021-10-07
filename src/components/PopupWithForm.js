@@ -1,126 +1,24 @@
 import "../index.css";
 
-function PopupWithForm() {
-    
-  return(
-    <>
-    <article className="popup edit-popup">
+function PopupWithForm(props) {
+  return (
+      <article className={`popup popup_type_${props.name} ${props.isOpen ? 'popup_opened' : ''}`}>
         <div className="popup__container">
           <button
             className="popup__close"
             aria-label="Закрыть попап"
             type="button"
+            onClick={props.onClose}
           ></button>
-          <form className="popup__content" name="Edit-form">
-            <h2 className="popup__title">Редактировать профиль</h2>
-            <section className="popup__section">
-              <input
-                type="text"
-                name="name"
-                className="popup__input popup__input_type_title"
-                placeholder="Имя профиля"
-                required
-                minLength="2"
-                maxLength="40"
-              />
-              <span className="popup__input-error"></span>
-            </section>
-            <section className="popup__section">
-              <input
-                type="text"
-                name="about"
-                className="popup__input popup__input_type_subtitle"
-                placeholder="Описание"
-                required
-                minLength="2"
-                maxLength="200"
-              />
-              <span className="popup__input-error"></span>
-            </section>
+          <form className="popup__content" name={props.name}>
+            <h2 className="popup__title">{props.title}</h2>
+            {props.children}
             <button type="submit" className="popup__submit">
-              Сохранить
-            </button>
-          </form>
-        </div>
-      </article><article className="popup add-popup">
-        <div className="popup__container">
-          <button
-            className="popup__close"
-            aria-label="Закрыть попап"
-            type="button"
-          ></button>
-          <form className="popup__content" name="Add-form">
-            <h2 className="popup__title">Новое место</h2>
-            <section className="popup__section">
-              <input
-                type="text"
-                name="cardName"
-                className="popup__input popup__input_type_title"
-                placeholder="Название"
-                required
-                minLength="2"
-                maxLength="30"
-              />
-              <span className="popup__input-error"></span>
-            </section>
-            <section className="popup__section">
-              <input
-                type="url"
-                name="cardLink"
-                className="popup__input popup__input_type_subtitle"
-                placeholder="Ссылка на картинку"
-                required
-              />
-              <span className="popup__input-error"></span>
-            </section>
-            <button type="submit" className="popup__submit">
-              Создать
+              {props.buttonText}
             </button>
           </form>
         </div>
       </article>
-      <article className="popup confirm-popup">
-        <div className="popup__container">
-          <button
-            className="popup__close"
-            aria-label="Закрыть попап"
-            type="button"
-          ></button>
-          <form className="popup__content" name="Card-delete-form">
-            <h2 className="popup__title popup__title_confirm">Вы уверены?</h2>
-            <button type="submit" className="popup__submit">
-              Да
-            </button>
-          </form>
-        </div>
-      </article>
-      <article className="popup update-avatar-popup">
-        <div className="popup__container">
-          <button
-            className="popup__close"
-            aria-label="Закрыть попап"
-            type="button"
-          ></button>
-          <form className="popup__content" name="Update-avatar-form">
-            <h2 className="popup__title">Обновить аватар</h2>
-            <section className="popup__section">
-              <input
-                type="url"
-                name="avatar"
-                className="popup__input popup__input_type_subtitle"
-                placeholder="Ссылка на фото профиля"
-                required
-              />
-              <span className="popup__input-error"></span>
-            </section>
-            <button type="submit" className="popup__submit">
-              Сохранить
-            </button>
-          </form>
-        </div>
-      </article>
-    </>
-      
   );
 }
 
