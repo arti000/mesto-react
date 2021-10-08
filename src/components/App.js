@@ -7,6 +7,7 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 
 function App() {
+
   const [isEditProfilePopupOpen, setEditProfilePopupOpening] =
     React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpening] = React.useState(false);
@@ -126,25 +127,7 @@ function App() {
       <ImagePopup />
 
       <template className="card-template">
-        <li className="card">
-          <button
-            className="card__remove-button"
-            aria-label="Удалить карточку"
-            type="button"
-          ></button>
-          <img src="#" alt="#" className="card__image" />
-          <div className="card__info">
-            <p className="card__title"></p>
-            <div>
-              <button
-                className="card__like-button"
-                aria-label="Поставить лайк"
-                type="button"
-              ></button>
-              <p className="card__likes-counter">0</p>
-            </div>
-          </div>
-        </li>
+        
       </template>
     </div>
   );

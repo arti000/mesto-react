@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
   headers = {
     authorization: "6554ca45-9ec7-4afa-bc65-05491936dde3",
     "Content-type": "application/json",
@@ -96,3 +96,7 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 }
+
+export const api = new Api({
+  url: "https://mesto.nomoreparties.co/v1/cohort-27/",
+});
