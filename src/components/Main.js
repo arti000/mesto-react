@@ -51,31 +51,8 @@ function Main(props) {
         <ul className="cards">
           {cards.map((card) => (
             <Card
-              card={
-                <li className="card">
-                  <button
-                    className="card__remove-button"
-                    aria-label="Удалить карточку"
-                    type="button"
-                  ></button>
-                  <img
-                    src={card.link}
-                    alt={card.name}
-                    className="card__image"
-                  />
-                  <div className="card__info">
-                    <p className="card__title">{card.name}</p>
-                    <div>
-                      <button
-                        className="card__like-button"
-                        aria-label="Поставить лайк"
-                        type="button"
-                      ></button>
-                      <p className="card__likes-counter">{card.likes.length}</p>
-                    </div>
-                  </div>
-                </li>
-              }
+              onCardClick={props.onCardClick}
+              card={card}
             />
           ))}
         </ul>

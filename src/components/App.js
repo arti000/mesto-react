@@ -7,7 +7,7 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 
 function App() {
-
+  const [selectedCard, setSelectedCard] = React.useState();
   const [isEditProfilePopupOpen, setEditProfilePopupOpening] =
     React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpening] = React.useState(false);
@@ -23,10 +23,16 @@ function App() {
   function handleAddPlaceClick() {
     setAddPlacePopupOpening(true);
   }
+
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
+  
   function closeAllPopup() {
     setEditAvatarPopupOpening(false);
     setEditProfilePopupOpening(false);
     setAddPlacePopupOpening(false);
+    setSelectedCard()
   }
   return (
     <div className="page__content">
@@ -35,6 +41,7 @@ function App() {
         onEditAvatar={handleEditAvatarClick}
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
+        onCardClick={handleCardClick}
       />
       <Footer />
       <PopupWithForm
@@ -124,11 +131,7 @@ function App() {
         isOpen={false}
         onClose={closeAllPopup}
       />
-      <ImagePopup />
-
-      <template className="card-template">
-        
-      </template>
+      <ImagePopup card={selectedCard} onClose={closeAllPopup} />
     </div>
   );
 }
