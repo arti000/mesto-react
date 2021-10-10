@@ -15,7 +15,8 @@ function Main(props) {
       setUserName(data[0].name);
       setUserDescription(data[0].about);
       setCards(data[1]);
-    });
+    })
+    .catch((err) => console.log(err))
   }, []);
 
   return (
