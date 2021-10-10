@@ -20,7 +20,6 @@ class Api {
       headers: this.headers,
     })
       .then(this._handleResponse)
-      .catch((err) => console.log(err));
   }
 
   getUserInfo() {
@@ -28,7 +27,6 @@ class Api {
       headers: this.headers,
     })
       .then(this._handleResponse)
-      .catch((err) => console.log(err));
   }
 
   setUserInfo(data) {
@@ -41,7 +39,6 @@ class Api {
       }),
     })
       .then(this._handleResponse)
-      .catch((err) => console.log(err));
   }
 
   setAvatar(data) {
@@ -53,7 +50,6 @@ class Api {
       }),
     })
       .then(this._handleResponse)
-      .catch((err) => console.log(err));
   }
 
   createCard(data) {
@@ -66,7 +62,6 @@ class Api {
       }),
     })
       .then(this._handleResponse)
-      .catch((err) => console.log(err));
   }
 
   putLike(id) {
@@ -75,7 +70,6 @@ class Api {
       headers: this.headers,
     })
       .then(this._handleResponse)
-      .catch((err) => console.log(err));
   }
 
   deleteLike(id) {
@@ -84,7 +78,6 @@ class Api {
       headers: this.headers,
     })
       .then(this._handleResponse)
-      .catch((err) => console.log(err));
   }
 
   deleteCard(id) {
@@ -93,7 +86,6 @@ class Api {
       headers: this.headers,
     })
       .then(this._handleResponse)
-      .catch((err) => console.log(err));
   }
 }
 
