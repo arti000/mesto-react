@@ -2,19 +2,15 @@ import React from "react";
 import "../index.css";
 import { api } from "../utils/Api";
 import Card from "./Card";
+import { CurrentUserContext } from "../context/CurrentUserContext";
 
 function Main(props) {
-  const [userAvatar, setAvatar] = React.useState();
-  const [userDescription, setUserDescription] = React.useState();
-  const [userName, setUserName] = React.useState();
   const [cards, setCards] = React.useState([]);
-
+  const currentUser = React.useContext(CurrentUserContext);
   React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()]).then((data) => {
-      setAvatar(data[0].avatar);
-      setUserName(data[0].name);
-      setUserDescription(data[0].about);
-      setCards(data[1]);
+    api.getInitialCards()
+    .then((data) => {
+      setCards(data);
     })
     .catch((err) => console.log(err))
   }, []);
@@ -27,18 +23,18 @@ function Main(props) {
             className="profile__edit-photo-btn"
             onClick={props.onEditAvatar}
           ></button>
-          <img src={userAvatar} alt="Фото" className="profile__photo" />
+          <img src={currentUser?.avatar} alt="Фото" className="profile__photo" />
         </div>
         <div className="profile__content">
           <div className="profile__info">
-            <h1 className="profile__title">{userName}</h1>
+            <h1 className="profile__title">{currentUser?.name}</h1>
             <button
               onClick={props.onEditProfile}
               className="profile__open-popup"
               aria-label="Открыть попап"
               type="button"
             ></button>
-            <p className="profile__subtitle">{userDescription}</p>
+            <p className="profile__subtitle">{currentUser?.about}</p>
           </div>
           <button
             onClick={props.onAddPlace}

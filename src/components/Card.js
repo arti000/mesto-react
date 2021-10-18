@@ -1,9 +1,17 @@
 import "../index.css";
+import React from "react";
+import { CurrentUserContext } from "../context/CurrentUserContext";
 
 function Card(props) {
   function handleClick() {
     props.onCardClick(props.card);
   }
+  const currentUser = React.useContext(CurrentUserContext);
+  const isOwn = props.card.owner._id === currentUser._id;
+  const cardRemoveButtonClassName = (`card__remove-button ${isOwn ? '.card__remove-button_visible' : ''}`)
+  const isLiked = props.card.likes.some(i => i._id === currentUser._id);
+  const cardLikeButtonClassName = `...`; 
+  
   return (
     <li className="card">
       <button
