@@ -1,9 +1,14 @@
-import '../index.css';
+import "../index.css";
 
 function Header() {
   return (
     <header className="header">
-      <a aria-label="Логотип" className="header__logo" href="#" target="_blank"></a>
+      <a
+        aria-label="Логотип"
+        className="header__logo"
+        href="#"
+        target="_blank"
+      ></a>
     </header>
   );
 }

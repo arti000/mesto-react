@@ -14,19 +14,17 @@ class Api {
     }
     return res.json();
   };
-  
+
   getInitialCards() {
     return fetch(`${this.url}` + "cards", {
       headers: this.headers,
-    })
-      .then(this._handleResponse)
+    }).then(this._handleResponse);
   }
 
   getUserInfo() {
     return fetch(`${this.url}` + "users/me", {
       headers: this.headers,
-    })
-      .then(this._handleResponse)
+    }).then(this._handleResponse);
   }
 
   setUserInfo(data) {
@@ -37,8 +35,7 @@ class Api {
         name: data.name,
         about: data.about,
       }),
-    })
-      .then(this._handleResponse)
+    }).then(this._handleResponse);
   }
 
   setAvatar(data) {
@@ -48,8 +45,7 @@ class Api {
       body: JSON.stringify({
         avatar: data.avatar,
       }),
-    })
-      .then(this._handleResponse)
+    }).then(this._handleResponse);
   }
 
   createCard(data) {
@@ -60,24 +56,21 @@ class Api {
         name: data.cardName,
         link: data.cardLink,
       }),
-    })
-      .then(this._handleResponse)
+    }).then(this._handleResponse);
   }
 
   changeLikeCardStatus(id, like) {
     return fetch(`${this.url}cards/likes/${id}`, {
-      method: like? "PUT" : "DELETE",
+      method: like ? "PUT" : "DELETE",
       headers: this.headers,
-    })
-      .then(this._handleResponse)
+    }).then(this._handleResponse);
   }
 
   deleteCard(id) {
     return fetch(`${this.url}cards/${id}`, {
       method: "DELETE",
       headers: this.headers,
-    })
-      .then(this._handleResponse)
+    }).then(this._handleResponse);
   }
 }
 
