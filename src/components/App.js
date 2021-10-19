@@ -7,6 +7,7 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import { api } from "../utils/Api";
 import { CurrentUserContext } from "../context/CurrentUserContext";
+import EditProfilePopup from "./EditProfilePopup";
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState();
@@ -38,12 +39,19 @@ function App() {
     setSelectedCard(card);
   }
   
-  function closeAllPopup() {
+  function closeAllPopups() {
     setIsEditAvatarPopupOpening(false);
     setIsEditProfilePopupOpening(false);
     setIsAddPlacePopupOpening(false);
     setSelectedCard()
   }
+  function handleUpdateUser({name, about}) {
+    api.setUserInfo({name, about})
+    .then(userInfo => setCurrentUser(userInfo))
+    .catch((err) => console.log(err))
+    closeAllPopups()
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className="page__content">
@@ -60,7 +68,7 @@ function App() {
         title="Обновить аватар"
         buttonText="Сохранить"
         isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopup}
+        onClose={closeAllPopups}
       >
         <section className="popup__section">
           <input
@@ -73,44 +81,13 @@ function App() {
           <span className="popup__input-error"></span>
         </section>
       </PopupWithForm>
-      <PopupWithForm
-        name="edit-profile"
-        title="Редактировать профиль"
-        buttonText="Сохранить"
-        isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopup}
-      >
-        <section className="popup__section">
-          <input
-            type="text"
-            name="name"
-            className="popup__input popup__input_type_title"
-            placeholder="Имя профиля"
-            required
-            minLength="2"
-            maxLength="40"
-          />
-          <span className="popup__input-error"></span>
-        </section>
-        <section className="popup__section">
-          <input
-            type="text"
-            name="about"
-            className="popup__input popup__input_type_subtitle"
-            placeholder="Описание"
-            required
-            minLength="2"
-            maxLength="200"
-          />
-          <span className="popup__input-error"></span>
-        </section>
-      </PopupWithForm>
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
       <PopupWithForm
         name="add-place"
         title="Новое место"
         buttonText="Создать"
         isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopup}
+        onClose={closeAllPopups}
       >
         <section className="popup__section">
           <input
@@ -140,9 +117,9 @@ function App() {
         title="Вы уверены?"
         buttonText="Да"
         isOpen={false}
-        onClose={closeAllPopup}
+        onClose={closeAllPopups}
       />
-      <ImagePopup card={selectedCard} onClose={closeAllPopup} />
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </div>
     </CurrentUserContext.Provider>
   );
