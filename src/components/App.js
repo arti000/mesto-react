@@ -8,6 +8,7 @@ import ImagePopup from "./ImagePopup";
 import { api } from "../utils/Api";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState();
@@ -51,7 +52,12 @@ function App() {
     .catch((err) => console.log(err))
     closeAllPopups()
   }
-
+  function handleUpdateAvatar({avatar}) {
+    api.setAvatar({avatar})
+    .then(userAvatar => setCurrentUser(userAvatar))
+    .catch((err) => console.log(err))
+    closeAllPopups()
+  }
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className="page__content">
@@ -63,24 +69,7 @@ function App() {
         onCardClick={handleCardClick}
       />
       <Footer />
-      <PopupWithForm
-        name="update-avatar"
-        title="Обновить аватар"
-        buttonText="Сохранить"
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-      >
-        <section className="popup__section">
-          <input
-            type="url"
-            name="avatar"
-            className="popup__input popup__input_type_subtitle"
-            placeholder="Ссылка на фото профиля"
-            required
-          />
-          <span className="popup__input-error"></span>
-        </section>
-      </PopupWithForm>
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
       <PopupWithForm
         name="add-place"
