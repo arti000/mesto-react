@@ -16,19 +16,19 @@ class Api {
   };
 
   getInitialCards() {
-    return fetch(`${this.url}` + "cards", {
+    return fetch(`${this.url}cards`, {
       headers: this.headers,
     }).then(this._handleResponse);
   }
 
   getUserInfo() {
-    return fetch(`${this.url}` + "users/me", {
+    return fetch(`${this.url}users/me`, {
       headers: this.headers,
     }).then(this._handleResponse);
   }
 
   setUserInfo(data) {
-    return fetch(`${this.url}` + "users/me", {
+    return fetch(`${this.url}users/me`, {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({
@@ -39,7 +39,7 @@ class Api {
   }
 
   setAvatar(data) {
-    return fetch(`${this.url}` + "users/me/avatar", {
+    return fetch(`${this.url}users/me/avatar`, {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({
@@ -49,7 +49,7 @@ class Api {
   }
 
   createCard(data) {
-    return fetch(`${this.url}` + "cards", {
+    return fetch(`${this.url}cards`, {
       method: "POST",
       headers: this.headers,
       body: JSON.stringify({

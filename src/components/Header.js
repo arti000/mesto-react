@@ -4,9 +4,11 @@ function Header() {
       <a
         aria-label="Логотип"
         className="header__logo"
-        href="#"
+        href="/#"
         target="_blank"
-      ></a>
+      >
+        Anchor
+      </a>
     </header>
   );
 }

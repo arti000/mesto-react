@@ -10,6 +10,8 @@
   -moz-transition: 0.3s;
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
+  text-indent: -9999px;
+  white-space: nowrap;
 }
 
 .header__logo:hover {
