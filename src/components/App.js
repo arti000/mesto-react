@@ -105,7 +105,7 @@ function App() {
         setCards(data);
       })
       .catch((err) => console.log(err));
-  }, [currentUser]);
+  }, []);
 
   function handleCardClick(card) {
     setSelectedCard(card);
