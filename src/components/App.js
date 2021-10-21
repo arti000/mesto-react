@@ -64,9 +64,10 @@ function App() {
     closeAllPopups();
   }
   
-  function handleAddPlaceSubmit() {
+  function handleAddPlaceSubmit({ name, link }) {
     api
-    .createCard()
+    .createCard({ name, link })
+    .then(newCard => setCards([newCard, ...cards]))
     closeAllPopups();
   }
 
@@ -123,7 +124,7 @@ function App() {
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-          
+          onAddPlace={handleAddPlaceSubmit}
         />
         <PopupWithForm
           name="confirmation"

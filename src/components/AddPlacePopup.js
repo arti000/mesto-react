@@ -1,10 +1,25 @@
 import "../index.css";
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
-import { CurrentUserContext } from "../context/CurrentUserContext";
+
 
 function AddPlacePopup(props) {
+  const [name, setName] = React.useState('');
+  const [link, setLink] = React.useState('');
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
+  function handleLinkChange(e) {
+    setLink(e.target.value);
+  }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onAddPlace({
+      name: name,
+      link: link,
+    });
+  } 
   return (
     <PopupWithForm
       name="add-place"
@@ -12,6 +27,7 @@ function AddPlacePopup(props) {
       buttonText="Создать"
       isOpen={props.isOpen}
       onClose={props.onClose}
+      onSubmit={handleSubmit}
     >
       <section className="popup__section">
         <input
@@ -22,6 +38,8 @@ function AddPlacePopup(props) {
           required
           minLength="2"
           maxLength="30"
+          value={name}
+          onChange={handleNameChange}
         />
         <span className="popup__input-error"></span>
       </section>
@@ -32,6 +50,8 @@ function AddPlacePopup(props) {
           className="popup__input popup__input_type_subtitle"
           placeholder="Ссылка на картинку"
           required
+          value={link}
+          onChange={handleLinkChange}
         />
         <span className="popup__input-error"></span>
       </section>
