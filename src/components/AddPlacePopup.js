@@ -1,11 +1,9 @@
-import "../index.css";
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-
 function AddPlacePopup(props) {
-  const [name, setName] = React.useState('');
-  const [link, setLink] = React.useState('');
+  const [name, setName] = React.useState("");
+  const [link, setLink] = React.useState("");
   function handleNameChange(e) {
     setName(e.target.value);
   }
@@ -19,7 +17,7 @@ function AddPlacePopup(props) {
       name: name,
       link: link,
     });
-  } 
+  }
   return (
     <PopupWithForm
       name="add-place"

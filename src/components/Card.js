@@ -1,4 +1,3 @@
-import "../index.css";
 import React from "react";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 
@@ -10,21 +9,26 @@ function Card(props) {
     props.onCardDelete(props.card);
   }
   function handleLikeClick() {
-    props.onCardLike(props.card)
+    props.onCardLike(props.card);
   }
   const currentUser = React.useContext(CurrentUserContext);
   const isOwn = props.card.owner._id === currentUser._id;
-  const cardRemoveButtonClassName = (`card__remove-button ${isOwn ? 'card__remove-button_visible' : ''}`)
-  const isLiked = props.card.likes.some(i => i._id === currentUser._id);
-  const cardLikeButtonClassName = (`card__like-button ${isLiked ? 'card__like-button_active' : ''}`); 
-  
+  const cardRemoveButtonClassName = `card__remove-button ${
+    isOwn ? "card__remove-button_visible" : ""
+  }`;
+  const isLiked = props.card.likes.some((i) => i._id === currentUser._id);
+  const cardLikeButtonClassName = `card__like-button ${
+    isLiked ? "card__like-button_active" : ""
+  }`;
+
   return (
     <li className="card">
       <button
         onClick={handleDeleteClick}
         className={cardRemoveButtonClassName}
         aria-label="Удалить карточку"
-        type="button"></button>
+        type="button"
+      ></button>
       <img
         src={props.card.link}
         alt={props.card.name}
@@ -44,7 +48,7 @@ function Card(props) {
         </div>
       </div>
     </li>
-  )
+  );
 }
 
 export default Card;

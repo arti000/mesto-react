@@ -1,6 +1,4 @@
 import React from "react";
-import "../index.css";
-import { api } from "../utils/Api";
 import Card from "./Card";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 

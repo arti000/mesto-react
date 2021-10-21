@@ -1,4 +1,3 @@
-import "../index.css";
 import React from "react";
 import Header from "./Header";
 import Main from "./Main";
@@ -21,18 +20,18 @@ function App() {
         setCurrentUser(UserInfo);
       })
       .catch((err) => console.log(err));
-    }, []);
+  }, []);
 
   //Все, что касается попапов
   const [selectedCard, setSelectedCard] = React.useState();
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpening] =
-  React.useState(false);
+    React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpening] =
     React.useState(false);
-    const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpening] =
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpening] =
     React.useState(false);
 
-    function handleEditAvatarClick() {
+  function handleEditAvatarClick() {
     setIsEditAvatarPopupOpening(true);
   }
   function handleEditProfileClick() {
@@ -41,7 +40,7 @@ function App() {
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpening(true);
   }
-  
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpening(false);
     setIsEditProfilePopupOpening(false);
@@ -51,23 +50,23 @@ function App() {
   //Все что касается частных функций попапов
   function handleUpdateUser({ name, about }) {
     api
-    .setUserInfo({ name, about })
-    .then((userInfo) => setCurrentUser(userInfo))
-    .catch((err) => console.log(err));
+      .setUserInfo({ name, about })
+      .then((userInfo) => setCurrentUser(userInfo))
+      .catch((err) => console.log(err));
     closeAllPopups();
   }
   function handleUpdateAvatar({ avatar }) {
     api
-    .setAvatar({ avatar })
-    .then((userAvatar) => setCurrentUser(userAvatar))
-    .catch((err) => console.log(err));
+      .setAvatar({ avatar })
+      .then((userAvatar) => setCurrentUser(userAvatar))
+      .catch((err) => console.log(err));
     closeAllPopups();
   }
-  
+
   function handleAddPlaceSubmit({ name, link }) {
     api
-    .createCard({ name, link })
-    .then(newCard => setCards([newCard, ...cards]))
+      .createCard({ name, link })
+      .then((newCard) => setCards([newCard, ...cards]));
     closeAllPopups();
   }
 
@@ -86,17 +85,17 @@ function App() {
   }
   React.useEffect(() => {
     api
-    .getInitialCards()
-    .then((data) => {
-      setCards(data);
-    })
-    .catch((err) => console.log(err));
+      .getInitialCards()
+      .then((data) => {
+        setCards(data);
+      })
+      .catch((err) => console.log(err));
   }, [currentUser]);
-  
+
   function handleCardClick(card) {
     setSelectedCard(card);
   }
-  
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page__content">
